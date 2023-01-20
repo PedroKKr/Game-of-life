@@ -1,5 +1,5 @@
 # Conway's Game of Life
-A complete Conway's game of life in 100 lines of code with PyGame
+A simple and complete Conway's game of life in 100 lines of code with PyGame
 
 <img src="https://user-images.githubusercontent.com/52111108/213820072-0dda3736-bf7b-4cf2-aea3-a415e171df7f.gif" width="512" height="284">
 
