@@ -1,5 +1,5 @@
 # Conway's Game of Life
-A complete Conway's game of life in 100 lines of code
+A complete Conway's game of life in 100 lines of code with PyGame
 
 ## Commands
 *LMB = Left mouse button; RMB = Right mouse button*
