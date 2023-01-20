@@ -1,6 +1,8 @@
 # Conway's Game of Life
 A complete Conway's game of life in 100 lines of code with PyGame
 
+![Janela-20-01-2023-19-54-12](https://user-images.githubusercontent.com/52111108/213820072-0dda3736-bf7b-4cf2-aea3-a415e171df7f.gif)
+
 ## Commands
 *LMB = Left mouse button; RMB = Right mouse button*
 - Click LMB to make a cell alive or dead
