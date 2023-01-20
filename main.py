@@ -28,13 +28,11 @@ def updatestate(state):
 
 def drawBoard(screen,state,view,zoom=128,aspect=1.8):
     x,y = view[0], view[1]
+    screen.fill(p.Color('white'))
     for r in range(round(zoom/aspect)):
         for c in range(zoom):
             if (c-x,r-y) in state:
-                color = p.Color("black")
-            else:
-                color = p.Color("white")
-            p.draw.rect(screen, color, p.Rect(c * SQ_SIZE, r * SQ_SIZE, SQ_SIZE, SQ_SIZE))
+                p.draw.rect(screen, p.Color("black"), p.Rect(c * SQ_SIZE, r * SQ_SIZE, SQ_SIZE, SQ_SIZE))
             p.draw.rect(screen, p.Color("gray"), p.Rect(c * SQ_SIZE, r * SQ_SIZE, SQ_SIZE, SQ_SIZE), width=1)
 
 clock = p.time.Clock()
@@ -96,5 +94,7 @@ while True:
         location = p.mouse.get_pos()
         col = location[0] // SQ_SIZE - view[0]
         row = location[1] // SQ_SIZE - view[1]
-        if painting_mode == 1: current_state[(col,row)] = 1
-        elif (col,row) in current_state: del current_state[(col,row)]
+        if painting_mode == 1:
+            current_state[(col,row)] = 1
+        elif (col,row) in current_state:
+            del current_state[(col,row)]
