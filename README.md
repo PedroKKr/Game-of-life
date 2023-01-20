@@ -2,6 +2,7 @@
 A complete Conway's game of life in 100 lines of code
 
 ## Commands
+*LMB = Left mouse button; RMB = Right mouse button*
 - Click LMB to make a cell alive or dead
 - Use the mouse wheel to increase or reduce the zoom
 - Use RMB to pan around
