@@ -20,8 +20,7 @@ def updatestate(state):
             newstate[cell] = 1
     for cell in borders:
         x, y = cell[0], cell[1]
-        neighbors = [(x, y + 1), (x, y - 1), (x + 1, y), (x - 1, y), (x + 1, y + 1), (x + 1, y - 1), (x - 1, y + 1),
-                      (x - 1, y - 1)]
+        neighbors = [(x,y+1),(x,y-1),(x+1,y),(x-1,y),(x+1,y+1),(x+1,y-1),(x-1,y+1),(x-1,y-1)]
         if sum(1 for c in neighbors if c in state) == 3:
             newstate[cell] = 1
     return newstate
