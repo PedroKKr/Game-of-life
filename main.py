@@ -72,7 +72,7 @@ while True:
             elif e.key == p.K_KP_MINUS:
                 MAX_FPS -= 2
             elif e.key == p.K_i:
-                print(f"Max FPS: {MAX_FPS}\nEditing: {editing}\nPainting mode: {painting_mode}\n==========================")
+                print(f"Max FPS: {MAX_FPS}\nEditing: {editing}\nPainting mode: {painting_mode}\nZoom: {zoom}\n==========================")
         elif e.type == p.MOUSEBUTTONDOWN:
             if e.button == 1 and painting_mode == 0:
                 location = p.mouse.get_pos()
@@ -87,7 +87,7 @@ while True:
                 location0 = p.mouse.get_pos()
                 view0 = view
         if e.type == p.MOUSEWHEEL:
-            if 10 < zoom < 400:
+            if (e.y > 0 and zoom > 10) or (e.y < 0 and zoom < 400):
                 zoom -= e.y*2
             SQ_SIZE = WIDTH // zoom + 1
     mouse_state = p.mouse.get_pressed()
@@ -98,5 +98,7 @@ while True:
         location = p.mouse.get_pos()
         col = location[0] // SQ_SIZE - view[0]
         row = location[1] // SQ_SIZE - view[1]
-        if painting_mode == 1: current_state[(col,row)] = 1
-        elif (col,row) in current_state: del current_state[(col,row)]
+        if painting_mode == 1:
+            current_state[(col,row)] = 1
+        elif (col,row) in current_state:
+            del current_state[(col,row)]
