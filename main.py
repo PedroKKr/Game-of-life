@@ -6,7 +6,7 @@ SQ_SIZE = WIDTH//zoom
 
 def updatestate(state):
     newstate = {}
-    borders = []
+    borders = {}
     for cell in list(state):
         x,y = cell[0], cell[1]
         neighbors = [(x,y+1),(x,y-1),(x+1,y),(x-1,y),(x+1,y+1),(x+1,y-1),(x-1,y+1),(x-1,y-1)]
@@ -15,10 +15,10 @@ def updatestate(state):
             if neighbor in state:
                 score += 1
             elif neighbor not in borders:
-                borders.append(neighbor)
+                borders[neighbor] = 1
         if score == 2 or score == 3:
             newstate[cell] = 1
-    for cell in borders:
+    for cell in list(borders):
         x, y = cell[0], cell[1]
         neighbors = [(x,y+1),(x,y-1),(x+1,y),(x-1,y),(x+1,y+1),(x+1,y-1),(x-1,y+1),(x-1,y-1)]
         if sum(1 for c in neighbors if c in state) == 3:
