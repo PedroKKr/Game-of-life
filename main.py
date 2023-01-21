@@ -25,14 +25,18 @@ def updatestate(state):
             newstate[cell] = 1
     return newstate
 
-def drawBoard(screen,state,view,zoom=128,aspect=1.8):
+def drawBoard(screen,state,view,zoom,aspect):
     x,y = view[0], view[1]
     screen.fill(p.Color('white'))
     for r in range(round(zoom/aspect)):
+        rSq = r*SQ_SIZE
         for c in range(zoom):
             if (c-x,r-y) in state:
-                p.draw.rect(screen, p.Color("black"), p.Rect(c * SQ_SIZE, r * SQ_SIZE, SQ_SIZE, SQ_SIZE))
-            p.draw.rect(screen, p.Color("gray"), p.Rect(c * SQ_SIZE, r * SQ_SIZE, SQ_SIZE, SQ_SIZE), width=1)
+                p.draw.rect(screen, p.Color("black"), p.Rect(c * SQ_SIZE, rSq, SQ_SIZE, SQ_SIZE))
+        p.draw.line(screen, p.Color("grey"), (0, rSq), (WIDTH, rSq))
+    for c in range(zoom):
+        cSq = c * SQ_SIZE
+        p.draw.line(screen, p.Color("grey"), (cSq, 0), (cSq, WIDTH // aspect))
 
 clock = p.time.Clock()
 p.init()
@@ -48,6 +52,7 @@ while True:
         current_state = updatestate(current_state)
     drawBoard(screen, current_state,view,zoom,aspect)
     clock.tick(MAX_FPS)
+    p.display.set_caption(f'Conway\'s Game of Life {clock.get_fps() :.2f}')
     p.display.flip()
     for e in p.event.get():
         if e.type == p.KEYDOWN:
@@ -93,7 +98,5 @@ while True:
         location = p.mouse.get_pos()
         col = location[0] // SQ_SIZE - view[0]
         row = location[1] // SQ_SIZE - view[1]
-        if painting_mode == 1:
-            current_state[(col,row)] = 1
-        elif (col,row) in current_state:
-            del current_state[(col,row)]
+        if painting_mode == 1: current_state[(col,row)] = 1
+        elif (col,row) in current_state: del current_state[(col,row)]
